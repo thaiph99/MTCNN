@@ -43,7 +43,7 @@ def rotate(img, bbox, landmark, alpha):
     return (obj, landmark_)
 
 
-def flip(obj, lmnum, landmark):
+def flip(obj, landmark, lmnum=5):
     """
         flip object
     """

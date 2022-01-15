@@ -218,7 +218,7 @@ def gen_landmark_data_plate(srcTxt, net, augment=False):
 
                 #mirror                    
                 if random.choice([0,1]) > 0:
-                    plate_flipped, landmark_flipped = flip(resized_im, 4, landmark_)
+                    plate_flipped, landmark_flipped = flip(resized_im, landmark_, 4)
                     plate_flipped = cv2.resize(plate_flipped, (sizeOfNet[net] * 3, sizeOfNet[net]))
                     #c*h*w
                     F_imgs.append(plate_flipped)
@@ -235,7 +235,7 @@ def gen_landmark_data_plate(srcTxt, net, augment=False):
                     F_landmarks.append(landmark_rotated.reshape(8))
                 
                     #flip
-                    plate_flipped, landmark_flipped = flip(plate_rotated_by_alpha, 4, landmark_rotated)
+                    plate_flipped, landmark_flipped = flip(plate_rotated_by_alpha, landmark_rotated, 4)
                     plate_flipped = cv2.resize(plate_flipped, (sizeOfNet[net] * 3, sizeOfNet[net]))
                     F_imgs.append(plate_flipped)
                     F_landmarks.append(landmark_flipped.reshape(8))                
@@ -249,7 +249,7 @@ def gen_landmark_data_plate(srcTxt, net, augment=False):
                     F_imgs.append(plate_rotated_by_alpha)
                     F_landmarks.append(landmark_rotated.reshape(8))
                 
-                    plate_flipped, landmark_flipped = flip(plate_rotated_by_alpha, 4, landmark_rotated)
+                    plate_flipped, landmark_flipped = flip(plate_rotated_by_alpha, landmark_rotated, 4)
                     plate_flipped = cv2.resize(plate_flipped, (sizeOfNet[net] * 3, sizeOfNet[net]))
                     F_imgs.append(plate_flipped)
                     F_landmarks.append(landmark_flipped.reshape(8)) 
