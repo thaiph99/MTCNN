@@ -1,5 +1,5 @@
 #coding:utf-8
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 import numpy as np
 import os
 from datetime import datetime
@@ -68,7 +68,7 @@ def train(netFactory, modelPrefix, endEpoch, dataPath, display=200, baseLr=0.01,
 
     if net == 'pnet': # PNet use this method to get data
         dataset_dir = os.path.join(dataPath, 'all.tfrecord')
-        total_num = sum(1 for _ in tf.python_io.tf_record_iterator(dataset_dir))
+        total_num = sum(1 for _ in tf.compat.v1.io.tf_record_iterator(dataset_dir))
         image_batch, label_batch, bbox_batch, landmark_batch = read_single_tfrecord(dataset_dir, config.BATCH_SIZE, net)
     elif net in ['rnet', 'onet']: # RNet and ONet use 4 tfrecords to get data
         pos_dir = os.path.join(dataPath, 'pos.tfrecord')
@@ -85,7 +85,7 @@ def train(netFactory, modelPrefix, endEpoch, dataPath, display=200, baseLr=0.01,
         image_batch, label_batch, bbox_batch, landmark_batch = read_multi_tfrecords(dataset_dirs, batch_sizes, net)        
         total_num = 0
         for d in dataset_dirs:
-            total_num += sum(1 for _ in tf.python_io.tf_record_iterator(d))
+            total_num += sum(1 for _ in tf.compat.v1.io.tf_record_iterator(d))
     #ratio 
     if net == 'pnet':
         image_size = 12

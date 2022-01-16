@@ -3,3 +3,4 @@ numpy
 opencv-python
 easydict
 Pillow
+tf_slim

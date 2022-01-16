@@ -6,7 +6,7 @@ import numpy as np
 import argparse
 
 from tools.tfrecord_utils import _process_image_withoutcoder, _convert_to_example_simple, _convert_to_example_plate
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 
 def __iter_all_data(net, iterType):
     saveFolder = os.path.join(rootPath, "tmp/data/%s/"%(net))
@@ -144,8 +144,8 @@ def gen_tfrecords(net, lmnum, shuffling=False):
     """
     print(">>>>>> Start tfrecord create...Stage: %s"%(net))
     def _gen(tfFileName, net, iterType, shuffling):
-        if tf.gfile.Exists(tfFileName):
-            tf.gfile.Remove(tfFileName)
+        if tf.io.gfile.exists(tfFileName):
+            tf.io.gfile.remove(tfFileName)
 
         # GET Dataset, and shuffling.
         if lmnum == 5:
@@ -157,7 +157,7 @@ def gen_tfrecords(net, lmnum, shuffling=False):
         
         # Process dataset files.
         # write the data to tfrecord
-        with tf.python_io.TFRecordWriter(tfFileName) as tfrecord_writer:
+        with tf.io.TFRecordWriter(tfFileName) as tfrecord_writer:
             for i, image_example in enumerate(dataset):
                 if i % 100 == 0:
                     sys.stdout.write('\rConverting[%s]: %d/%d' % (net, i + 1, len(dataset)))

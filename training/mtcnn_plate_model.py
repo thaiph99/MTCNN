@@ -1,5 +1,5 @@
 # coding:utf-8
-import tensorflow as tf
+import tensorflow.compat.v1 as tf
 from tensorflow.contrib import slim
 import numpy as np
 num_keep_radio = 0.7

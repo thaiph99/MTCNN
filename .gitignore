@@ -133,6 +133,7 @@ tmp/
 tmp_12x12_ccpd_base_black/
 tmp_12x12_ccpd_paste/
 tmp_36x12/
+tmp.zip
 
 # dataset
 dataset/

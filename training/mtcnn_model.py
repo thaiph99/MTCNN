@@ -1,6 +1,6 @@
 # coding:utf-8
-import tensorflow as tf
-from tensorflow.contrib import slim
+import tensorflow.compat.v1 as tf
+import tf_slim as slim
 import numpy as np
 num_keep_radio = 0.7
 # define prelu
